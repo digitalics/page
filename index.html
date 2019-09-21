@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Learning JavaScript</title>
+	<style type="text/css">
+		* {
+			font-family: sans-serif;
+		}
+
+		body {
+			margin: 0;
+		}
+
+		.grid-container {
+			display: grid;
+			height: 300vh;
+			grid-template-columns: 1fr 7fr 1fr;
+			grid-template-rows: 1fr 80fr 1fr;
+			grid-template-areas: 
+			". content ." 
+			". content ." 
+			". . .";
+			background-color: #6CAB98;
+		}
+
+		.content {
+			border: 2px solid black;
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr 15fr;
+			grid-template-areas: 
+			"header" 
+			"para";
+			grid-area: content;
+			background-color: white;
+		}
+
+		header {
+			display: grid;
+			grid-area: header;
+			font-size: 2em;
+			align-items: center;
+    		justify-content: center
+		}
+
+		.para {
+			display: grid;
+			grid-area: para;
+			grid-template-columns: 3fr 2fr;
+			grid-template-rows: 15% 29% 13% 21% 12% 10%;
+			grid-template-areas: 
+			"intro pa" 
+			"pb advert"
+			"pc ."
+			"pd ."
+			"pe ."
+			"pf credits";
+			font-size: 20px;
+		}
+
+		.intro {
+			display: grid;
+			grid-area: intro;
+			margin: 1em 2em 1em 2em;
+			padding: 1em;
+			font-style: italic;
+			background-color: #bfbfbf;
+		}
+
+		.par {
+			margin: 1em 2em 1em 2em;
+			padding-right: 1em;
+			padding-left: 1em;
+			background-color: #f2f2f2;
+		}
+
+		a:not(#nam) {
+			text-decoration: none;
+		}
+
+		a:visited {
+			color: blue;
+		}
+
+		a:hover {
+			color: #ca7152;
+		}
+
+		#p1 {
+			display: grid;
+			grid-area: pa;
+		}
+
+		#p2 {
+			display: grid;
+			grid-area: pb;
+		}
+
+		#p3 {
+			display: grid;
+			grid-area: pc;
+		}
+
+		#p4 {
+			display: grid;
+			grid-area: pd;
+		}
+
+		#p5 {
+			display: grid;
+			grid-area: pe;
+		}
+
+		#p6 {
+			display: grid;
+			grid-area: pf;
+		}
+
+		.ul {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+
+		.advert {
+			display: grid;
+			grid-area: advert;
+		}
+
+		.holder {
+			margin: 2em;
+			border: 2px solid black;
+		}
+
+		.question {
+			padding: 15px;
+			background-color: #bfbfbf;
+		}
+
+		.credits {
+			display: grid;
+			grid-area: credits;
+			text-align: center;
+			margin: 1em;
+			align-items: flex-end;
+		}
+
+		@media screen and (max-width: 1600px) {
+
+			.para {
+				font-size: 19px;
+			}
+		}
+
+		@media screen and (max-width: 1400px) {
+
+			.grid-container { 
+				height: 350vh;
+			}
+
+			.para {
+				grid-template-columns: 5% 90% 5%;
+				grid-template-areas: 
+				". intro ."
+				". pa ."
+				". pb ."
+				". advert ."
+				". pc ."
+				". pd ."
+				". pe ."
+				". pf ."
+				". credits .";
+				grid-template-rows: 12% 8% 23% 9% 11% 18% 10% 8% 1%;
+			}
+
+			.par, .holder {
+			margin: 1em;
+			}
+		}
+
+		@media screen and (max-width: 1100px) {
+
+			.grid-container { 
+				height: 400vh;
+			}
+
+			.para {
+				grid-template-columns: 100%;
+				grid-template-areas: 
+				"intro"
+				"pa"
+				"pb"
+				"advert"
+				"pc"
+				"pd"
+				"pe"
+				"pf"
+				"credits";
+			}
+		}
+
+		@media screen and (max-width: 850px) {
+
+			.grid-container {
+				grid-template-columns: 1fr;
+				grid-template-rows: 1fr;
+				grid-template-areas: "content";
+			}
+
+			.content {
+				grid-template-rows: 4% 96%;
+			}
+
+			.par, .intro {
+				margin: 0;
+			}
+
+			.par{
+				border: 1px solid black;
+			}
+
+			.para {
+				grid-template-rows: 12% 9% 25% 8% 10% 18% 10% 8%;
+			}
+		}
+
+		@media screen and (max-width: 580px) {
+
+			header {
+				font-size: 29px;
+			}
+
+			.para {
+				grid-template-rows: 11% 9% 25% 7% 11% 15% 13% 9%;
+				font-size: 17px;
+			}
+		}
+
+		@media screen and (max-width: 450px) {
+			.grid-container {
+				height: 670vh;			}
+		}
+
+	</style>
+</head>
+<body>
+	<div class="grid-container">
+		<div class="content">
+			<header>Should my first programming language be JavaScript?</header>
+			<div class="para">
+				<div class="intro">
+					<span><a href="#p1">What is JavaScript?</a><br><br>
+					<a href="#p2">What are the benefits and detriments of learning JS over other languages?</a><br><br>
+					<a href="#p3">Where should I go to learn JS?</a><br><br>
+					<a href="#p4">What should I do after I've learnt the basics?</a><br><br>
+					<a href="#p5">What is OOP, DOM, AJAX, API[...] and should I learn them?<br>If so, what will be gained on doing so?</a><br><br>
+					<a href="#p6">Is it necessary to learn RegEx, Dynamic programming and hashing as a JS developer?</a></span>
+				</div>
+
+				<div class="par" id="p1">
+					<p>JavaScript is a programming language that is used on websites to make them interactive and optimized. The language was first made in 1995 and even though the name clearly contains the word "Java" it in actuality was little to nothing to do with Java which is a different programming language. JavaScript went from being a nobody to being a somebody and it has seen a massive rise in popularity these recent years, so much so that it is the most taught programming language in the world wide web.</p>
+				</div>
+
+				<div class="par" id="p2">
+					<p class="question">Well, JavaScript seems all fine and dandy but why should I choose JS and not Python or C#?</p>
+					<p>JS has the advantage of being an easy applicable language that gives instant feedback to the developer, you can easily see where your skills are lacking and what you need to learn to make things work. Python has a lot of different uses from machine learning to data-analytics(you probably don't even know what a data analyst does) and it can quickly become very overhelming when you're about to choose a project or task to improve your skills. C# is a strong contender that is sought after in todays marketplace, it too has many uses but I would still advise you to choose JavaScript because C# is Microsoft specific.<br>
+					<div>
+						Benefits:
+						<ul>
+							<li>Good beginner language</li>
+							<li>High demand</li>
+							<li>Easy debugging(finding bugs in the code)</li>
+							<li>And many more...</li>
+						</ul>
+						<br>
+						Detriments:
+						<ul>
+							<li>Imperative to be meticulous with the security(even Google struggles with this)</li>
+							<li>Limited to the web</li>
+							<li>Difficult to master</li>
+						</ul>
+					</div></p>
+				</div>
+
+				<div class="par" id="p3">
+					<p class="question">JavaScript sounds great! Now where do I Start?</p>
+					<p>There are so many places to learn programming in JS the most popular websites are:
+					<div>
+						<ul class="ul">
+							<li>FreeCodeCamp.org - you guessed it, entirely free of charge</li>
+							<li>SoloLearn - free</li>
+							<li>Codecademy - the basics are free</li>
+							<li>Code-school/Pluralsight - monthly/annual fee</li>
+						</ul>
+					</div></p>
+				</div>
+
+				<div class="par" id="p4">
+					<p class="question">Okey, I think I have a grasp of this, tell me what I should do now.</p>
+					<p>This is where you're going to learn to use your wings so to speak. I have three tips for people who've just finished learning the basics of a language.
+					<ol>
+						<li>Create a project</li>
+						<li>Create a project</li>
+						<li>Can you guess what the third one is?</li>
+					</ol>
+					<p class="question">Well how do I make a project?</p>
+					<p><span>There are plentyfull of ways to start a project, <a href="https://www.google.se" id="nam">this tutorial</a> will how you the way forward (Youtube).</span></p>
+				</div>
+
+				<div class="par" id="p5" name="intro"><p>
+					Now when moving around and creating projects you might stumble upon terms like OOP, DOM, AJAX, API, framework and the "this" keyword. My recommendation is to only focus on the DOM(Document Object Model) or in other words "the art of making a website cool with your JS". DOM helps you to see where the JavaScript is suppose to be applied, when learning DOM you will naturaly see where the other stuff such AJAX and frameworks comes into play.<br>AJAX, different frameworks and different API:s are definantly going to raise your pay, but they are more like specialization and less like mandatory knowledge for developers.</p>
+				</div>
+
+				<div class="par" id="p6"><p>
+					So when you've coded for a while you will start seeing the words RegEx and hashing being thrown around. RegEx is a technology that would help every developer in every field but it's not necessary to know. Dynamic programing and hashing are ways of structuring algorithms to make them more efficient, whilst you can get away with not learning DP trying to escaping hashing won't be easy since alot of interview question involve hashing and DP.</p>
+				</div>
+
+				<div class="advert">
+					<div class="holder"></div>
+				</div>
+
+				<div class="credits">
+					<p>Made by: (Dave)<span style="text-decoration: none"><a href="www.google.com">digitalics.net@gmail.com</a></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
